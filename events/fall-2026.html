@@ -380,7 +380,8 @@
                 </p>
 
                 <a
-		    href="https://Ugrana-001.ezconnect.to/apps/photogallery?albumId=GE:1789366478"
+                    id="fall-photos-kn"
+                    href="#"
                     class="photo-button"
                     target="_blank"
                     rel="noopener noreferrer"
@@ -633,13 +634,15 @@
                 </p>
 
                 <a
-                    href="https://ugrana-001.myasustor.com:4700/share/WSPKIOAHC"
+                    id="fall-photos-kn"
+                    href="#"
                     class="photo-button"
                     target="_blank"
                     rel="noopener noreferrer"
                 >
                     📸 View Event Photos 🔒
                 </a>
+
             </section>
 
             <section class="event-card">
@@ -722,6 +725,15 @@
         } else {
             showKannada();
         }
+    </script>
+    <script src="../config/events-2026.js"></script>
+
+    <script>
+        document.getElementById("fall-photos-kn").href =
+           events2026.fallPicnic.photos;
+
+    document.getElementById("fall-photos-en").href =
+        events2026.fallPicnic.photos;
     </script>
 
 </body>
