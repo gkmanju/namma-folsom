@@ -68,13 +68,31 @@
         }
 
         .event-location-link,
-        .event-rsvp-button {
+        .event-rsvp-button,
+        .photo-button {
             display: inline-block;
             margin-top: 8px;
         }
 
-        .event-rsvp-button {
+        .event-rsvp-button,
+        .photo-button {
             text-decoration: none;
+        }
+
+        .photo-button {
+            padding: 12px 20px;
+            border-radius: 10px;
+            background: #7b1e3a;
+            color: #ffffff;
+            font-weight: 600;
+            transition:
+                transform 0.2s ease,
+                opacity 0.2s ease;
+        }
+
+        .photo-button:hover {
+            transform: translateY(-1px);
+            opacity: 0.92;
         }
     </style>
 </head>
@@ -88,6 +106,7 @@
 
     <div class="language-bar">
         <div class="language-toggle" aria-label="Language selection">
+
             <button
                 id="kannadaButton"
                 class="active"
@@ -104,14 +123,15 @@
             >
                 English
             </button>
+
         </div>
     </div>
 
     <main class="content">
 
-        <!-- ================================================= -->
+        <!-- ========================= -->
         <!-- KANNADA VERSION - DEFAULT -->
-        <!-- ================================================= -->
+        <!-- ========================= -->
 
         <div
             id="kannadaContent"
@@ -121,9 +141,7 @@
             <section class="event-card">
                 <h2>🍂 ನಮ್ಮ ಫೋಲ್ಸಮ್ ಶರತ್ಕಾಲದ ಸಮ್ಮಿಲನ ೨೦೨೬</h2>
 
-                <p>
-                    ಆತ್ಮೀಯರೇ,
-                </p>
+                <p>ಆತ್ಮೀಯರೇ,</p>
 
                 <p>
                     ಪ್ರಕೃತಿಯ ರಸದೌತಣ ಹಾಗೂ ಸತ್ಸಂಗದ ಬೆಳಕಿನಲ್ಲಿ,
@@ -349,6 +367,29 @@
             </section>
 
             <section class="event-card">
+                <h2>📸 ಕಾರ್ಯಕ್ರಮದ ಚಿತ್ರಗಳು 🔒</h2>
+
+                <p>
+                    ಕಾರ್ಯಕ್ರಮದ ಚಿತ್ರಗಳನ್ನು ಖಾಸಗಿಯಾಗಿ
+                    ನಮ್ಮ ಕುಟುಂಬಗಳೊಂದಿಗೆ ಹಂಚಿಕೊಳ್ಳಲಾಗಿದೆ.
+                </p>
+
+                <p>
+                    ಚಿತ್ರಗಳನ್ನು ನೋಡಲು ಕೆಳಗಿನ ಲಿಂಕ್ ತೆರೆಯಿರಿ.
+                    ಪ್ರವೇಶಕ್ಕೆ ಪಾಸ್‌ವರ್ಡ್ ಅಗತ್ಯವಿದೆ.
+                </p>
+
+                <a
+                    href="https://ugrana-001.myasustor.com:4700/share/WSPKIOAHC"
+                    class="photo-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    📸 ಕಾರ್ಯಕ್ರಮದ ಚಿತ್ರಗಳನ್ನು ನೋಡಿ 🔒
+                </a>
+            </section>
+
+            <section class="event-card">
                 <h2>✅ RSVP — ನಿಮ್ಮ ಆಗಮನವನ್ನು ತಿಳಿಸಿ</h2>
 
                 <p>
@@ -378,9 +419,9 @@
         </div>
 
 
-        <!-- ================================================= -->
+        <!-- ================= -->
         <!-- ENGLISH VERSION -->
-        <!-- ================================================= -->
+        <!-- ================= -->
 
         <div
             id="englishContent"
@@ -576,6 +617,29 @@
                     no assignments! Just come, relax,
                     and enjoy the day. 😊
                 </p>
+            </section>
+
+            <section class="event-card">
+                <h2>📸 Event Photos 🔒</h2>
+
+                <p>
+                    Event photos are shared privately with
+                    Namma Folsom families.
+                </p>
+
+                <p>
+                    Open the private photo gallery below.
+                    A password is required to view the photos.
+                </p>
+
+                <a
+                    href="https://ugrana-001.myasustor.com:4700/share/WSPKIOAHC"
+                    class="photo-button"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                >
+                    📸 View Event Photos 🔒
+                </a>
             </section>
 
             <section class="event-card">
