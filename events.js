@@ -59,7 +59,7 @@ function showHome() {
                     </div>
 
                     <span class="event-status">
-                        RSVP Open
+                        Completed
                     </span>
 
                     <h3>
@@ -71,8 +71,8 @@ function showHome() {
                     </p>
 
                     <p>
-                        Enjoy live outdoor cooking, family activities,
-                        games, and an afternoon of community building.
+                       Enjoy live outdoor cooking, family activities,
+                       games, and an afternoon of community building.
                     </p>
 
                     <a
@@ -84,15 +84,7 @@ function showHome() {
 
                     <br>
 
-                    <a
-                        href="events/fall-2026-rsvp.html"
-                        class="rsvp-btn"
-                    >
-                        RSVP Interest
-                    </a>
-
                 </article>
-
 
                 <article class="calendar-card">
 
@@ -202,12 +194,12 @@ const events = [
 
         date: "September 12, 2026",
 
-        location: "Venue TBD (US-50 East or Delta Area)",
+        location: "Henningsen Lotus Park",
 
         description: `
-            Join Namma Folsom families for our inaugural
-            Fall Day Picnic featuring live outdoor cooking,
-            family activities, games, and community bonding.
+            Namma Folsom families gathered for our
+            Fall Day Picnic with live outdoor cooking,
+           family activities, games, and community bonding.
         `,
 
         details: [
@@ -219,7 +211,7 @@ const events = [
 
         link: "events/fall-2026.html",
 
-        rsvp: "events/fall-2026-rsvp.html"
+	completed: true
     },
 
 
