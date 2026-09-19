@@ -1,25 +1,57 @@
 <!DOCTYPE html>
 <html lang="kn">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="description" content="Namma Folsom connects Kannada families in and around Folsom through cultural celebrations, family events, and community.">
-<title>Namma Folsom | Folsom Kannada Families</title>
-<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Namma Folsom | Folsom Kannada Families</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Kannada:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-<nav class="top-nav"><div class="nav-inner">
-<div class="nav-brand" id="homeLink" role="button" tabindex="0"><span class="nav-mark">NF</span><span id="navBrandText">ನಮ್ಮ ಫೋಲ್ಸಮ್</span></div>
-<div class="nav-right"><div class="nav-events"><span class="nav-label" id="navEventsLabel">ಕಾರ್ಯಕ್ರಮಗಳು</span><ul id="eventList"></ul></div>
-<div class="language-toggle" aria-label="Language selection"><button id="kannadaButton" class="active" type="button">ಕನ್ನಡ</button><button id="englishButton" type="button">English</button></div></div>
-</div></nav>
-<header class="hero"><div class="hero-glow hero-glow-one"></div><div class="hero-glow hero-glow-two"></div>
-<div class="hero-content"><div class="kannada-title" id="heroBrand">ನಮ್ಮ ಫೋಲ್ಸಮ್</div><p class="hero-kicker" id="heroKicker">ಫಾಲ್ಸಮ್ ಕನ್ನಡ ಕುಟುಂಬಗಳು</p>
-<h1 class="hero-kannada" id="heroTitle">ನಮ್ಮ ಸಂಸ್ಕೃತಿ, ನಮ್ಮ ಭಾಷೆ, ನಮ್ಮ ಜನ — ಎಲ್ಲರೂ ಒಟ್ಟಾಗಿ!</h1>
-<p class="hero-description" id="heroDescription">ಕರ್ನಾಟಕದ ಹಬ್ಬಗಳನ್ನು ಒಟ್ಟಾಗಿ ಆಚರಿಸಲು, ಕನ್ನಡ ಕಲೆ ಮತ್ತು ಸಂಸ್ಕೃತಿಯನ್ನು ಉಳಿಸಿ ಬೆಳೆಸಲು, ಮತ್ತು ಫಾಲ್ಸಮ್‌ನ ಕನ್ನಡ ಕುಟುಂಬಗಳನ್ನು ಒಂದೇ ಸಮುದಾಯವಾಗಿ ಬೆಸೆಯಲು ನಿರ್ಮಿಸಿದ ನಮ್ಮ ವೇದಿಕೆ.</p>
-<div class="hero-actions"><button class="primary-btn" id="exploreButton" type="button">ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ನೋಡಿ ↓</button></div></div></header>
-<main class="main-content" id="community-content"><div id="eventContent"></div></main>
-<footer class="footer"><div class="footer-inner"><div><strong id="footerBrand">ನಮ್ಮ ಫೋಲ್ಸಮ್</strong><span id="footerSubbrand">Namma Folsom</span></div><p id="footerText">ನಮ್ಮ ಸಂಸ್ಕೃತಿ, ನಮ್ಮ ಭಾಷೆ, ನಮ್ಮ ಜನ — ಎಲ್ಲರೂ ಒಟ್ಟಾಗಿ!</p></div></footer>
-<script src="events.js"></script>
-</body></html>
+<body class="kannada-mode">
+  <header class="topbar">
+    <button id="mobileMenuButton" class="mobile-menu-button" type="button" aria-label="Open event menu" aria-expanded="false">☰</button>
+    <a href="#" id="homeLink" class="topbar-brand"><span class="brand-mark">ನ</span><span id="navBrandText">ನಮ್ಮ ಫೋಲ್ಸಮ್</span></a>
+    <div class="language-toggle" aria-label="Language selection">
+      <button id="kannadaButton" class="active" type="button">ಕನ್ನಡ</button>
+      <button id="englishButton" type="button">English</button>
+    </div>
+  </header>
+
+  <div class="site-layout">
+    <aside id="sidebar" class="sidebar">
+      <div class="sidebar-inner">
+        <button id="sidebarHome" class="sidebar-home active" type="button">⌂ <span id="sidebarHomeLabel">ಮುಖಪುಟ</span></button>
+        <div class="sidebar-heading" id="navEventsLabel">ಕಾರ್ಯಕ್ರಮಗಳು</div>
+        <nav id="eventList" class="event-list" aria-label="Events"></nav>
+      </div>
+    </aside>
+    <div id="sidebarOverlay" class="sidebar-overlay"></div>
+
+    <main class="main-content">
+      <section class="hero">
+        <div class="hero-inner">
+          <div id="heroBrand" class="hero-brand">ನಮ್ಮ ಫೋಲ್ಸಮ್</div>
+          <div id="heroKicker" class="hero-kicker">ಫಾಲ್ಸಮ್ ಕನ್ನಡ ಕುಟುಂಬಗಳು</div>
+          <h1 id="heroTitle">ನಮ್ಮ ಸಂಸ್ಕೃತಿ, ನಮ್ಮ ಭಾಷೆ, ನಮ್ಮ ಜನ — ಎಲ್ಲರೂ ಒಟ್ಟಾಗಿ!</h1>
+          <p id="heroDescription">ಕರ್ನಾಟಕದ ಹಬ್ಬಗಳನ್ನು ಒಟ್ಟಾಗಿ ಆಚರಿಸಲು, ಕನ್ನಡ ಕಲೆ ಮತ್ತು ಸಂಸ್ಕೃತಿಯನ್ನು ಉಳಿಸಿ ಬೆಳೆಸಲು, ಮತ್ತು ಫಾಲ್ಸಮ್‌ನ ಕನ್ನಡ ಕುಟುಂಬಗಳನ್ನು ಒಂದೇ ಸಮುದಾಯವಾಗಿ ಬೆಸೆಯಲು ನಿರ್ಮಿಸಿದ ವೇದಿಕೆ.</p>
+          <button id="exploreButton" class="primary-button" type="button">ಕಾರ್ಯಕ್ರಮಗಳನ್ನು ನೋಡಿ ↓</button>
+        </div>
+      </section>
+
+      <div id="community-content">
+        <div id="eventContent"></div>
+      </div>
+
+      <footer>
+        <strong id="footerBrand">ನಮ್ಮ ಫೋಲ್ಸಮ್</strong>
+        <span id="footerSubbrand">ಫಾಲ್ಸಮ್ ಕನ್ನಡ ಕುಟುಂಬಗಳು</span>
+        <p id="footerText">ನಮ್ಮ ಸಂಸ್ಕೃತಿ • ನಮ್ಮ ಭಾಷೆ • ನಮ್ಮ ಸಮುದಾಯ</p>
+      </footer>
+    </main>
+  </div>
+
+  <script src="events.js"></script>
+</body>
+</html>
