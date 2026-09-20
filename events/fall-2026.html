@@ -92,6 +92,28 @@
             transform: translateY(-1px);
             opacity: 0.92;
         }
+
+	.event-status-badge {
+            display: inline-block;
+            margin: 0 0 18px;
+            padding: 6px 11px;
+            border-radius: 999px;
+            font-size: 0.72rem;
+            font-weight: 800;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+        }
+
+        .event-status-badge.completed {
+            background: #e4eee5;
+            color: #426349;
+        }
+
+        .event-status-badge.planning {
+            background: #f3e7ca;
+            color: #795b20;
+        }
+
     </style>
 </head>
 
@@ -138,6 +160,7 @@
 
                 <section class="event-card">
                 <h2>🍂 ನಮ್ಮ ಫೋಲ್ಸಮ್ ಶರತ್ಕಾಲದ ಸಮ್ಮಿಲನ ೨೦೨೬</h2>
+		<span id="fall-status-kn" class="event-status-badge"></span>
 
                 <p>ಆತ್ಮೀಯರೇ,</p>
 
@@ -412,6 +435,7 @@
 
         <section class="event-card">
                 <h2>🍂 Namma Folsom Fall Day Picnic 2026</h2>
+		<span id="fall-status-en" class="event-status-badge"></span>
                 <p>
                     Namma Folsom families gathered for a beautiful
                     fall day by the American River with food, activities,
@@ -684,6 +708,16 @@
 
     document.getElementById("fall-uploads-en").href =
         events2026.fallPicnic.uploads;
+    const fallStatus = events2026.fallPicnic.status;
+
+    document.getElementById("fall-status-kn").textContent =
+        fallStatus === "completed" ? "✓ ಪೂರ್ಣಗೊಂಡಿದೆ" : "ಯೋಜನೆಯಲ್ಲಿದೆ";
+
+    document.getElementById("fall-status-en").textContent =
+        fallStatus === "completed" ? "✓ COMPLETED" : "IN PLANNING";
+
+    document.getElementById("fall-status-kn").classList.add(fallStatus);
+    document.getElementById("fall-status-en").classList.add(fallStatus);
 
     </script>
 

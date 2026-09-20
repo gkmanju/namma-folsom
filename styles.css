@@ -14,3 +14,46 @@ body{margin:0;background:var(--cream);color:var(--text);font-family:Inter,-apple
 .page-shell{display:grid;grid-template-columns:260px minmax(0,1fr);align-items:start}.page-main{min-width:0}.event-sidebar{position:sticky;top:63px;height:calc(100vh - 63px);z-index:900;background:rgba(251,247,241,.97);border-right:1px solid var(--border);overflow-y:auto}.sidebar-sticky{padding:28px 18px}.event-sidebar .nav-label{display:block;margin:0 10px 12px}.event-sidebar #eventList{display:flex;flex-direction:column;gap:5px;margin:0;padding:0;list-style:none}.event-sidebar #eventList li{padding:11px 12px;border-radius:12px;cursor:pointer;color:#5c5350;font-size:.86rem;line-height:1.45}.event-sidebar #eventList li:hover{color:var(--wine);background:var(--cream-dark)}.sidebar-toggle{display:none;border:0;background:transparent;color:var(--wine);font-size:1.35rem;line-height:1;cursor:pointer;padding:7px 8px;border-radius:9px}.sidebar-toggle:hover{background:var(--cream-dark)}.sidebar-overlay{display:none}.page-main .hero-content,.page-main .main-content,.page-main .footer-inner{max-width:1200px}
 @media(max-width:1050px){.page-shell{display:block}.event-sidebar{position:fixed;top:63px;left:0;width:min(82vw,300px);height:calc(100vh - 63px);transform:translateX(-105%);transition:transform .22s ease;box-shadow:14px 0 34px rgba(60,28,25,.16)}.event-sidebar.open{transform:translateX(0)}.sidebar-toggle{display:block}.sidebar-overlay{position:fixed;inset:63px 0 0;background:rgba(30,15,18,.34);z-index:850}.sidebar-overlay.show{display:block}.nav-inner{justify-content:flex-start}.language-toggle{margin-left:auto}}
 @media(max-width:600px){.event-sidebar{top:59px;height:calc(100vh - 59px)}.sidebar-overlay{inset:59px 0 0}.sidebar-toggle{padding-left:2px}}
+
+.sidebar-group-title{
+    margin:22px 10px 7px !important;
+    padding:0 !important;
+    background:transparent !important;
+    cursor:default !important;
+    color:var(--muted) !important;
+    font-size:.68rem !important;
+    font-weight:800;
+    letter-spacing:.11em;
+    text-transform:uppercase;
+}
+
+.sidebar-event-item{
+    display:flex;
+    flex-direction:column;
+    gap:5px;
+}
+
+.sidebar-event-name{
+    color:inherit;
+}
+
+.sidebar-status{
+    width:max-content;
+    margin-left:25px;
+    padding:3px 7px;
+    border-radius:999px;
+    font-size:.58rem;
+    font-weight:800;
+    letter-spacing:.05em;
+    text-transform:uppercase;
+}
+
+.sidebar-status.planning{
+    background:#f3e7ca;
+    color:#795b20;
+}
+
+.sidebar-status.completed{
+    background:#e4eee5;
+    color:#426349;
+}

@@ -44,11 +44,91 @@ const events = [
 ];
 
 function val(e,f){return e[f]&&typeof e[f]==="object"?e[f][currentLanguage]:e[f];}
-function renderNavigation(){const list=document.getElementById("eventList");list.innerHTML="";events.forEach((e,i)=>{const li=document.createElement("li");li.textContent=`${e.icon} ${val(e,"title")}`;li.onclick=()=>{showEvent(i);closeSidebar();};list.appendChild(li);});}
+
+function renderNavigation(){
+    const list = document.getElementById("eventList");
+    list.innerHTML = "";
+
+    const upcoming = events
+        .map((event, index) => ({event, index}))
+        .filter(item => !item.event.completed);
+
+    const completed = events
+        .map((event, index) => ({event, index}))
+        .filter(item => item.event.completed);
+
+    function addGroup(title, items, statusText, statusClass) {
+        if (!items.length) return;
+
+        const heading = document.createElement("li");
+        heading.className = "sidebar-group-title";
+        heading.textContent = title;
+        list.appendChild(heading);
+
+        items.forEach(({event, index}) => {
+            const li = document.createElement("li");
+            li.className = "sidebar-event-item";
+
+            const name = document.createElement("span");
+            name.className = "sidebar-event-name";
+            name.textContent = `${event.icon} ${val(event, "title")}`;
+
+            const status = document.createElement("span");
+            status.className = `sidebar-status ${statusClass}`;
+            status.textContent = statusText;
+
+            li.appendChild(name);
+            li.appendChild(status);
+
+            li.onclick = () => {
+                showEvent(index);
+                closeSidebar();
+            };
+
+            list.appendChild(li);
+        });
+    }
+
+    if (currentLanguage === "kn") {
+        addGroup("ಮುಂಬರುವ ಕಾರ್ಯಕ್ರಮಗಳು", upcoming, "ಯೋಜನೆಯಲ್ಲಿದೆ", "planning");
+        addGroup("ಪೂರ್ಣಗೊಂಡ ಕಾರ್ಯಕ್ರಮಗಳು", completed, "ಪೂರ್ಣಗೊಂಡಿದೆ", "completed");
+    } else {
+        addGroup("UPCOMING", upcoming, "IN PLANNING", "planning");
+        addGroup("COMPLETED", completed, "COMPLETED", "completed");
+    }
+}
+
 function renderStaticCopy(){const t=copy[currentLanguage];document.documentElement.lang=currentLanguage;document.body.classList.toggle("kannada-mode",currentLanguage==="kn");["navBrandText","navEventsLabel","heroBrand","heroKicker","heroTitle","heroDescription","exploreButton","footerBrand","footerText"].forEach(()=>{});document.getElementById("navBrandText").textContent=t.navBrand;document.getElementById("navEventsLabel").textContent=t.navEvents;document.getElementById("heroBrand").textContent=t.heroBrand;document.getElementById("heroKicker").textContent=t.heroKicker;document.getElementById("heroTitle").textContent=t.heroTitle;document.getElementById("heroDescription").textContent=t.heroDescription;document.getElementById("exploreButton").textContent=t.explore;document.getElementById("footerBrand").textContent=t.navBrand;document.getElementById("footerSubbrand").textContent=currentLanguage==="kn"?"Namma Folsom":"ನಮ್ಮ ಫೋಲ್ಸಮ್";document.getElementById("footerText").textContent=t.footer;document.getElementById("kannadaButton").classList.toggle("active",currentLanguage==="kn");document.getElementById("englishButton").classList.toggle("active",currentLanguage==="en");}
 function purposeHTML(items){return items.map(x=>`<article class="purpose-card"><div class="purpose-icon">${x.icon}</div><h3>${x.title}</h3><p>${x.text}</p></article>`).join("");}
 function eventCardsHTML(){const t=copy[currentLanguage];return events.map((e,i)=>`<article class="calendar-card${e.featured?" featured-event":""}"><div class="event-icon">${e.icon}</div><span class="event-status${e.completed?"":" planning"}">${e.completed?t.completed:t.planning}</span><h3>${val(e,"title")}</h3><p class="event-date">${val(e,"date")}</p><p>${val(e,"description")}</p>${e.link?`<a href="${e.link}" class="event-link">${t.viewEvent}</a>`:`<button class="text-link" type="button" onclick="showEvent(${i})">${t.comingSoon} →</button>`}</article>`).join("");}
 function showHome(){const t=copy[currentLanguage];document.getElementById("eventContent").innerHTML=`<section class="welcome-section"><span class="eyebrow">${t.welcomeEyebrow}</span><h2>${t.welcomeTitle}</h2><p>${t.welcomeOne}</p></section><section class="purpose-section"><div class="section-heading"><span class="eyebrow">${t.purposeEyebrow}</span><h2>${t.purposeTitle}</h2></div><div class="purpose-grid">${purposeHTML(t.purposeItems)}</div><div class="community-invite">${t.invite}</div></section><section class="upcoming-events" id="events"><div class="section-heading"><span class="eyebrow">${t.calendarEyebrow}</span><h2>${t.calendarTitle}</h2><p>${t.calendarText}</p></div><div class="event-grid">${eventCardsHTML()}</div></section>`;}
-function showEvent(i){const e=events[i],t=copy[currentLanguage],d=val(e,"details")||[];document.getElementById("eventContent").innerHTML=`<div class="event-card"><div class="event-icon">${e.icon}</div><h2>${val(e,"title")}</h2><p><strong>${t.dateLabel}</strong> ${val(e,"date")}</p><p><strong>${t.locationLabel}</strong> ${val(e,"location")}</p><h3>${t.aboutLabel}</h3><p>${val(e,"description")}</p>${d.length?`<h3>${t.highlightsLabel}</h3><ul>${d.map(x=>`<li>${x}</li>`).join("")}</ul>`:""}${e.link?`<a href="${e.link}" class="event-link">${t.fullDetails}</a>`:""}${e.rsvp?`<a href="${e.rsvp}" class="rsvp-btn">${t.rsvp}</a>`:""}</div>`;document.getElementById("community-content").scrollIntoView({behavior:"smooth"});}
+
+
+function showEvent(i){
+    const e = events[i],
+          t = copy[currentLanguage],
+          d = val(e,"details") || [];
+
+    const statusText = e.completed ? t.completed : t.planning;
+    const statusClass = e.completed ? "completed" : "planning";
+
+    document.getElementById("eventContent").innerHTML =
+        `<div class="event-card">
+            <div class="event-icon">${e.icon}</div>
+            <span class="event-status ${statusClass}">${statusText}</span>
+            <h2>${val(e,"title")}</h2>
+            <p><strong>${t.dateLabel}</strong> ${val(e,"date")}</p>
+            <p><strong>${t.locationLabel}</strong> ${val(e,"location")}</p>
+            <h3>${t.aboutLabel}</h3>
+            <p>${val(e,"description")}</p>
+            ${d.length ? `<h3>${t.highlightsLabel}</h3><ul>${d.map(x=>`<li>${x}</li>`).join("")}</ul>` : ""}
+            ${e.link ? `<a href="${e.link}" class="event-link">${t.fullDetails}</a>` : ""}
+            ${e.rsvp ? `<a href="${e.rsvp}" class="rsvp-btn">${t.rsvp}</a>` : ""}
+        </div>`;
+
+    document.getElementById("community-content")
+        .scrollIntoView({behavior:"smooth"});
+}
+
 function setLanguage(l){currentLanguage=l;localStorage.setItem("nammaFolsomLanguage",l);renderStaticCopy();renderNavigation();showHome();}
 function closeSidebar(){document.getElementById("eventSidebar").classList.remove("open");document.getElementById("sidebarOverlay").classList.remove("show");document.getElementById("sidebarToggle").setAttribute("aria-expanded","false");}function toggleSidebar(){const s=document.getElementById("eventSidebar"),open=!s.classList.contains("open");s.classList.toggle("open",open);document.getElementById("sidebarOverlay").classList.toggle("show",open);document.getElementById("sidebarToggle").setAttribute("aria-expanded",String(open));}window.onload=function(){document.getElementById("homeLink").onclick=()=>{showHome();closeSidebar();};document.getElementById("homeLink").onkeydown=e=>{if(e.key==="Enter"||e.key===" "){e.preventDefault();showHome();closeSidebar();}};document.getElementById("kannadaButton").onclick=()=>setLanguage("kn");document.getElementById("englishButton").onclick=()=>setLanguage("en");document.getElementById("exploreButton").onclick=()=>document.getElementById("events").scrollIntoView({behavior:"smooth"});document.getElementById("sidebarToggle").onclick=toggleSidebar;document.getElementById("sidebarOverlay").onclick=closeSidebar;renderStaticCopy();renderNavigation();showHome();};
